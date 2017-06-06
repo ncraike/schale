@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+#
+# Set $HERE to the directory this file lives in
+#
+pushd $(dirname $0) > /dev/null
+HERE=$(pwd -P)
+popd > /dev/null
+
+#
+# Load ("source") common functions from ./_functions
+#
+. "${HERE}/_functions"
+
+#
+# Run key function, passing args given
+#
+shale__open_shell_in_docker "$@"

@@ -1,0 +1,33 @@
+#! /usr/bin/env bash
+
+IMAGE_TAG="shale:latest"
+
+pushd $(dirname $0) > /dev/null
+HERE=$(pwd -P)
+popd > /dev/null
+
+shale__build_docker_image() {
+    docker image build \
+        --file "${HERE}/../docker/Dockerfile" \
+        --tag "$IMAGE_TAG" \
+        "$@" \
+        "${HERE}/.."
+}
+
+shale__run_tests_in_docker() {
+    shale__build_docker_image "$@" \
+    && docker container run \
+            --rm \
+            "$IMAGE_TAG" \
+            composer test
+}
+
+shale__open_shell_in_docker() {
+    shale__build_docker_image "$@" \
+    && docker container run \
+            --rm \
+            --interactive \
+            --tty \
+            "$IMAGE_TAG" \
+            bash
+}
