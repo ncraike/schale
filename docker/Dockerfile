@@ -1,5 +1,11 @@
 FROM php:7.0
-MAINTAINER Studio None <developersh@studionone.com.au>
+MAINTAINER Studio None <developers@studionone.com.au>
+LABEL \
+    project="studionone/shale" \
+    maintainer="Studio None <developers@studionone.com.au>" \
+    author="Studio None <developers@studionone.com.au>" \
+    homepage="https://github.com/studionone/shale" \
+    git_repository="https://github.com/studionone/shale.git"
 
 ENV PROJECT_DIR /root/shale
 ENV DEBIAN_FRONTEND noninteractive
